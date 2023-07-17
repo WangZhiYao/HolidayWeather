@@ -15,7 +15,14 @@ from model import City, Weather, CityWeather
 
 # QWeather API
 WEATHER_API = 'https://devapi.qweather.com/v7/weather/7d'
-WEATHER_API_KEY = os.getenv("WEATHER_API_KEY")
+WEATHER_API_KEY = os.getenv('WEATHER_API_KEY')
+
+# SMTP
+EMAIL_ADDRESS = os.getenv('EMAIL_ADDRESS')
+EMAIL_PASSWORD = os.getenv('EMAIL_PASSWORD')
+EMAIL_RECEIVER = os.getenv('EMAIL_RECEIVER')
+SMTP_SERVER = os.getenv('SMTP_SERVER')
+SMTP_PORT = os.getenv('SMTP_PORT', '465')
 
 # Set log level
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%Y.%m.%d %H:%M:%S')
@@ -71,14 +78,11 @@ def find_sunny_cities(city):
 def send_email(subject, body):
     msg = MIMEText(body)
     msg['Subject'] = subject
-    msg['From'] = os.getenv('EMAIL_ADDRESS')
-    msg['To'] = os.getenv('EMAIL_RECEIVER')
+    msg['From'] = EMAIL_ADDRESS
+    msg['To'] = EMAIL_RECEIVER
 
-    smtp_server = os.getenv('SMTP_SERVER')
-    smtp_port = os.getenv('SMTP_PORT', '465')
-
-    with smtplib.SMTP_SSL(smtp_server, int(smtp_port)) as smtp:
-        smtp.login(os.getenv('EMAIL_ADDRESS'), os.getenv('EMAIL_PASSWORD'))
+    with smtplib.SMTP_SSL(SMTP_SERVER, int(SMTP_PORT)) as smtp:
+        smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
         smtp.send_message(msg)
 
 
