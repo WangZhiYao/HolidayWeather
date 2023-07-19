@@ -8,12 +8,7 @@ Please note that the free version of the API only provides weather forecasts for
 ## Current Status
 
 ```
-2023-07-18 - 周末天气晴好提醒
-以下城市将在本周末天气晴好：
-
-厦门 更新时间 - 2023-07-18 08:35:
-2023-07-22 最高气温: 33°C 最低气温: 27°C 夜间：晴
-2023-07-23 最高气温: 35°C 最低气温: 28°C 夜间：晴
+2023-07-19 - 未来7日内无晴好周末
 ```
 
 ## Configuration
