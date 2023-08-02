@@ -1,7 +1,7 @@
 # TravelWeather
 
 This project utilizes GitHub Actions to schedule an automatic execution at 00:00am UTC (08:00am China Standard Time) on weekdays and retrieves weather data for the destination within the next 7 days by the [HeWeather weather daily forecast API](https://dev.qweather.com/docs/api/weather/weather-daily-forecast/).  
-The program checks if the weather is sunny for two consecutive days on Saturday and Sunday. In such a case, it sends a notification email to a specified email address.
+The program checks if the weather is sunny on Saturday or Sunday. In such a case, it sends a notification email to a specified email address.
 
 Please note that the free version of the API only provides weather forecasts for 7 days, which means that this project is only suitable for impromptu weekend getaways.
 
@@ -34,6 +34,10 @@ the [HeWeather GEO API](https://dev.qweather.com/docs/api/geoapi/city-lookup/).
 
 - [ ] Allow users to choose their preferred email service provider for notifications
 - [ ] Improve email notification content to use html
+
+## Update
+
+2023.8.2 - Encountering two consecutive sunny days during the weekend proves to be a rare occurrence, so I revised it to one of the days being sunny.
 
 ## License
 

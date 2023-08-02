@@ -66,7 +66,7 @@ def find_sunny_cities(city):
             if weekday != 5:
                 continue
             weekend = city_weather.daily[i:i + 2]
-            has_sunny_weekend = all(daily.text_day == '晴' for daily in weekend)
+            has_sunny_weekend = any(daily.text_day == '晴' for daily in weekend)
             if has_sunny_weekend:
                 logging.info(f'{city.name} has good weather for the coming weekend')
                 return CityWeather(city, update_time=city_weather.update_time, daily=weekend)
@@ -94,8 +94,8 @@ def generate_email_content(city_weathers):
         saturday, sunday = daily
         update_time = datetime.strptime(city_weather.update_time, '%Y-%m-%dT%H:%M%z').strftime('%Y-%m-%d %H:%M')
         body += f'{city.name} 更新时间 - {update_time}:\n'
-        body += f'{saturday.fx_date} 最高气温: {saturday.temp_max}°C 最低气温: {saturday.temp_min}°C 夜间：{saturday.text_night}\n'
-        body += f'{sunday.fx_date} 最高气温: {sunday.temp_max}°C 最低气温: {sunday.temp_min}°C 夜间：{saturday.text_night}\n\n'
+        body += f'{saturday.fx_date} 天气: {saturday.text_day} 最高气温: {saturday.temp_max}°C 最低气温: {saturday.temp_min}°C 夜间：{saturday.text_night}\n'
+        body += f'{sunday.fx_date} 天气: {sunday.text_day} 最高气温: {sunday.temp_max}°C 最低气温: {sunday.temp_min}°C 夜间：{sunday.text_night}\n\n'
     return body.strip('\n')
 
 
