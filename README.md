@@ -8,12 +8,7 @@ Please note that the free version of the API only provides weather forecasts for
 ## Current Status
 
 ```
-2023-08-09 - 周末天气晴好提醒
-以下城市将在本周末天气晴好：
-
-南京 更新时间 - 2023-08-09 08:35:
-2023-08-12 天气: 晴 最高气温: 36°C 最低气温: 26°C 夜间：晴
-2023-08-13 天气: 晴 最高气温: 35°C 最低气温: 24°C 夜间：晴
+2023-08-10 - 未来7日内无晴好周末
 ```
 
 ## Configuration
