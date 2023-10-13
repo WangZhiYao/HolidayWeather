@@ -1,0 +1,15 @@
+[provider]
+weather = "colorful_clouds"
+push = "smtp"
+
+[qweather]
+range = "7d"
+
+[colorful_clouds]
+range = "15"
+
+[smtp]
+host = "smtp.example.com"
+port = 465
+sender = "no-reply@example.com"
+receiver = "example@example.com"

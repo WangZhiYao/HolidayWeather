@@ -1,42 +1,42 @@
 [
   {
     "name": "泰山",
-    "location_id": 101120803
+    "location": "117.11,36.26"
   },
   {
     "name": "威海",
-    "location_id": 101121301
+    "location": "122.15,37.56"
   },
   {
     "name": "南京",
-    "location_id": 101190101
+    "location": "118.80,32.09"
   },
   {
     "name": "苏州",
-    "location_id": 101190401
+    "location": "120.61,31.33"
   },
   {
     "name": "嵊泗",
-    "location_id": 101211102
+    "location": "122.45,30.73"
   },
   {
     "name": "厦门",
-    "location_id": 101230201
+    "location": "118.07,24.44"
   },
   {
     "name": "成都",
-    "location_id": 101270101
+    "location": "104.07,30.66"
   },
   {
     "name": "大理",
-    "location_id": 101290201
+    "location": "100.16,25.70"
   },
   {
     "name": "德钦",
-    "location_id": 101291302
+    "location": "98.88,28.43"
   },
   {
     "name": "丽江",
-    "location_id": 101291405
+    "location": "100.24,26.87"
   }
 ]

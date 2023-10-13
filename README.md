@@ -1,9 +1,9 @@
-# TravelWeather
+# Holiday Weather
 
-This project utilizes GitHub Actions to schedule an automatic execution at 00:00am UTC (08:00am China Standard Time) on weekdays and retrieves weather data for the destination within the next 7 days by the [HeWeather weather daily forecast API](https://dev.qweather.com/docs/api/weather/weather-daily-forecast/).  
-The program checks if the weather is sunny on Saturday or Sunday. In such a case, it sends a notification email to a specified email address.
+This project utilizes Github Actions to schedule an automatic execution on workdays and retrieves weather data for the destination within the next couple of days by the  specified api.
+This program checks if the weather is sunny on at least one day during the holiday. In such a case, it will send notification messages through the specified method.
 
-Please note that the free version of the API only provides weather forecasts for 7 days, which means that this project is only suitable for impromptu weekend getaways.
+Please note that the free version of the API only provides weather forecasts for 1-15 days, which means that this project is only suitable for impromptu weekend getaways.
 
 ## Current Status
 
@@ -28,24 +28,78 @@ Please note that the free version of the API only provides weather forecasts for
 2023-10-15 天气: 晴 最高气温: 23°C 最低气温: 22°C 夜间：晴
 ```
 
-## Configuration
+## How to use
 
-### Secrets
+### 1. Destination
 
-This project uses the `Repository Secrets` feature of GitHub Actions. The following parameters are required:
+The destination is defined in the `destination.json` file, `name` is the destination name, and `location` is the destination coordinates(longitude first, latitude last, separated by commas, decimal format with up to two decimal points, north latitude and east longitude are positive, south latitude and west longitude is negative).
 
-- `SMTP_SERVER`: The SMTP server.
-- `SMTP_PORT`: The SMTP port.
-- `EMAIL_ADDRESS`: The email address of the SMTP sender.
-- `EMAIL_PASSWORD`: The password of the SMTP sender.
-- `EMAIL_RECEIVER`: The email address of the recipient.
-- `WEATHER_API_KEY`: The API key of HeWeather. You need to create a free project
-  on [HeWeather console](https://console.qweather.com/#/console) and apply for the API key.
+***Note: If you use [HeWeather](https://dev.qweather.com/docs/) as the weather provider, then the GCJ-02 coordinate system should be used in mainland China, and the WGS-84 coordinate system should be used in other areas.***
 
-### Destination
+### 2. Configuration
 
-The `city.json` file contains the `name` and `locationId` of the cities returned by
-the [HeWeather GEO API](https://dev.qweather.com/docs/api/geoapi/city-lookup/).
+This project uses [dynaconf](https://github.com/dynaconf/dynaconf) for configuration management. The following are examples and descriptions of `settings.toml`  and `.secrets.toml`.
+
+#### 2.1 settings.toml
+
+```toml
+[provider]
+weather = "colorful_clouds"
+push = "smtp"
+
+[colorful_clouds]
+range = "15"
+# or
+[qweather]
+range = "7d"
+
+[smtp]
+host = "smtp.example.com"
+port = 465
+sender = "no-reply@example.com"
+receiver = "example@example.com"
+```
+-  **provider**
+  - **weather**: Sources of weather forecast information. Options: [colorful_clouds](https://docs.caiyunapp.com/docs/daily), [qweather](https://dev.qweather.com/docs/api/weather/weather-daily-forecast/)
+  - **push**: Message push channels. Options: `smtp`
+
+- **colorful_clouds**
+  - **range**:  Weather forecast in time range. Options: 1-15
+
+- **qweather**
+  - **range**: Weather forecast in time range. Options: `3d`, `7d` for free account.
+
+- **smtp**
+  - **host**: The SMTP server.
+  - **port**: The SMTP port.
+  - **sender**: The email address of the SMTP sender.
+  - **receiver**: Optional, the email address of the recipient.
+
+#### 2.2 .secrets.toml
+
+```toml
+[colorful_clouds]
+dynaconf_merge = true
+api_key = ""
+# or
+[qweather]
+dynaconf_merge = true
+api_key = ""
+
+[smtp]
+dynaconf_merge = true
+password = ""
+```
+
+- **colorful_clouds**
+  - **api_key**:  The API key of Colorful Clouds. You need to create a free project on [Colorful Clouds console](https://platform.caiyunapp.com/dashboard/index) and apply for the API key.
+
+- **qweather**
+  - **api_key**: The API key of QWeather. You need to create a free project on [QWeather console](https://console.qweather.com/#/console) and apply for the API key.
+
+- **smtp**
+  - **password**: The password of the SMTP sender.
+
 
 ## TODO
 
@@ -53,8 +107,8 @@ the [HeWeather GEO API](https://dev.qweather.com/docs/api/geoapi/city-lookup/).
 - [ ] Improve email notification content to use html
 
 ## Update
-
-2023.8.2 - Encountering two consecutive sunny days during the weekend proves to be a rare occurrence, so I revised it to one of the days being sunny.
+- 2023/10/13 Add `Colorful Clouds` as weather provider 
+- 2023/08/02 Encountering two consecutive sunny days during the weekend proves to be a rare occurrence, so I revised it to one of the days being sunny.
 
 ## License
 
