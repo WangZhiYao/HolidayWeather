@@ -76,7 +76,7 @@ port = 465
 sender = "no-reply@example.com"
 receiver = "example@example.com"
 ```
--  **provider**
+- **provider**
   - **weather**: Sources of weather forecast information. Options: [colorful_clouds](https://docs.caiyunapp.com/docs/daily), [qweather](https://dev.qweather.com/docs/api/weather/weather-daily-forecast/)
   - **push**: Message push channels. Options: `smtp`
 
