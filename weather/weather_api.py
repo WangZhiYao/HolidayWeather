@@ -23,7 +23,7 @@ class WeatherApi(ABC):
         for destination_weather in destination_weathers:
             destination = destination_weather.destination
             weathers = destination_weather.weathers
-            body += f'\n{destination.name} 更新时间 - {destination_weather.update_time.strftime("%Y-%m-%d %H:%M")}:\n'
+            body += f'\n{destination.name} 更新时间 - {destination_weather.update_time.strftime("%Y-%m-%d %H:%M")}\n'
             for weather in weathers:
                 body += (f'{datetime.strftime(weather.date, "%Y-%m-%d")} 天气: {weather.day} '
                          f'云量：{weather.cloud} 最高气温: {weather.temp_max}°C 最低气温: {weather.temp_min}°C '

@@ -18,6 +18,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 
 TZ_SHANGHAI = timezone(timedelta(hours=8), name='Asia/Shanghai')
 
+
 def load_destinations() -> List[Destination]:
     with open('destinations.json', 'r', encoding='utf-8') as f:
         return TypeAdapter(List[Destination]).validate_json(f.read())
