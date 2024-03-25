@@ -8,15 +8,7 @@ Please note that the free version of the API only provides weather forecasts for
 ## Current Status
 
 ```
-2024-03-24 - 晴好假日提醒
-
-
-泰山 更新时间 - 2024-03-24 08:40
-2024-04-06 天气: 晴 云量：0.18 最高气温: 22.8°C 最低气温: 10.6°C 夜间：小雨
-
-威海 更新时间 - 2024-03-24 08:40
-2024-04-06 天气: 晴 云量：0.1 最高气温: 9.34°C 最低气温: 7.57°C 夜间：多云
-
+2024-03-25 - 未来暂无晴好假日
 ```
 
 ## How to use
